@@ -1,20 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Store from "./store.js";
-import App from "./components/app";
+import App from "./app.js";
 
 const root = document.getElementById("app");
+
+// console.log("index.js");
 
 // Состояние приложения
 const store = new Store({
   items: [
-    { code: 1, title: "Название элемента" },
-    { code: 2, title: "Некий объект" },
-    { code: 3, title: "Заголовок" },
-    { code: 4, title: "Короткое название" },
-    { code: 5, title: "Запись" },
-    { code: 6, title: "Пример названия" },
-    { code: 7, title: "Седьмой" },
+    { code: 1, title: "Название элемента", price: 100 },
+    { code: 2, title: "Книга про React", price: 770 },
+    { code: 3, title: "Хлеб", price: 43 },
+    { code: 4, title: "Трактор", price: 7654320 },
+    { code: 5, title: "Телефон iPhone XIXV", price: 120000 },
+    { code: 6, title: "Карандаши цветные", price: 111 },
+    { code: 7, title: "Товар сюрприз", price: 0 },
   ],
 });
 
@@ -22,7 +24,6 @@ const store = new Store({
 store.subscribe(() => {
   ReactDOM.render(<App store={store} />, root);
 });
-console.log(root);
 
 // Сообщаем реакту что и куда рендерить.
 ReactDOM.render(<App store={store} />, root);
