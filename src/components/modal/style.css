@@ -13,10 +13,16 @@
   position: absolute;
   left: 94.51%;
 }
+
 .total {
   float: right;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  padding-right: 10%;
+  padding-top: 10px;
 }
-.total {
-  margin: 10px;
-  padding-right: 9%;
+.result {
+  position: absolute;
+  padding-left: 16%;
 }

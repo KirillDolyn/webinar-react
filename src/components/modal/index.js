@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./style.css";
-function Modal({ onCloseCart, items, basket }) {
+function Modal({ onCloseCart, items, basket, result }) {
   return (
     <div className="drawer">
       <h2>
@@ -17,11 +17,13 @@ function Modal({ onCloseCart, items, basket }) {
               {item.code}
               <div className="Modal__title">{item.title}</div>
               <div className="Modal__price">{item.price + "₽"}</div>
-              <div className="number">1 шт</div>
+              <div className="number">{item.quantity} шт</div>
             </div>
           </div>
         ))}
-        <div className="total">Итого: {basket} ₽ </div>
+        <div className="total">
+          Итого: {basket} ₽<div className="result">{result + "шт."} </div>
+        </div>
       </div>
     </div>
   );

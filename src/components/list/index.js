@@ -11,6 +11,7 @@ function List({ items, onSelectItem, onAddCart }) {
         <div className="List__item" key={item.code}>
           <Item
             item={item}
+            items={items}
             onSelect={onSelectItem}
             onAdd={(obj) => onAddCart(item)}
           />

@@ -4,8 +4,6 @@ import plural from "plural-ru";
 import "./styles.css";
 
 function Item({ item, onSelect, onAdd, code, title, price }) {
-  // console.log("Item", item.title);
-
   const [counter, setCounter] = useState(0);
   const [added, setAdded] = useState(false);
 
