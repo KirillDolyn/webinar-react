@@ -20,7 +20,7 @@ function App({ store }) {
   const callbacks = {
     onCreateItem: useCallback(() => store.createItem(), [store]),
     onSelectItem: useCallback((code) => store.selectItem(code), [store]),
-    // onDeleteItem: useCallback((code) => store.deleteItem(code), [store]),
+    //onDeleteItem: useCallback((code) => store.deleteItem(code), [store]),
   };
   const onAddCart = (code) => {
     setCartItems((prev) => {
@@ -46,8 +46,7 @@ function App({ store }) {
         basket={basket}
         product={product}
         onClickCart={onClickCart}
-
-        // onCreate={callbacks.onCreateItem}
+        //onCreate={callbacks.onCreateItem}
       />
 
       <List
@@ -60,8 +59,6 @@ function App({ store }) {
           items={cartItems}
           basket={basket}
           result={result}
-          // isItemExist={isItemExist}
-          // setCartItems={setCartItems}
           onCloseCart={() => setModal(false)}
         />
       )}
