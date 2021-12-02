@@ -13,29 +13,32 @@ function App({ store }) {
   const [modal, setModal] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
 
-  const basket = cartItems.reduce((prev, obj) => obj.price + prev, 0);
-  const result = cartItems.reduce((res, item) => item.quantity + res, 0);
+  const basket = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  const result = cartItems.reduce((res, item) => res + item.quantity, 0);
   const product = cartItems.reduce((prev) => prev + 1, 0);
 
   const callbacks = {
     onCreateItem: useCallback(() => store.createItem(), [store]),
     onSelectItem: useCallback((code) => store.selectItem(code), [store]),
-    //onDeleteItem: useCallback((code) => store.deleteItem(code), [store]),
+    onDeleteItem: useCallback((code) => store.deleteItem(code), [store]),
   };
-  const onAddCart = (code) => {
-    setCartItems((prev) => {
-      const isItemExist = prev.find((el) => el.code === code.code);
-      if (isItemExist) {
-        return prev.map((el) => {
-          if (el.code === code.code) el.quantity += 1;
-          return el;
-        });
-      } else {
-        return [...prev, code];
-      }
-    });
+  const { items } = store;
+  const onAddCart = (items) => {
+    const exist = cartItems.find((x) => x.code === items.code);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.code === items.code ? { ...exist, quantity: exist.quantity + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...items, quantity: 1 }]);
+    }
   };
 
+
+  const plus = (prev) => {};
+  console.log(cartItems);
   const onClickCart = () => {
     setModal(true);
   };
@@ -46,7 +49,7 @@ function App({ store }) {
         basket={basket}
         product={product}
         onClickCart={onClickCart}
-        //onCreate={callbacks.onCreateItem}
+        onCreate={callbacks.onCreateItem}
       />
 
       <List
