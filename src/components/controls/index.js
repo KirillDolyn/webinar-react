@@ -12,7 +12,7 @@ function Controls({ basket, onClickCart, product }) {
         {product
           ? `  ${product} ${plural(product, "товар", "товара", "товаров")}`
           : null}{" "}
-        / {basket} ₽
+        / {basket ? `${basket}` : "пусто"} ₽
       </span>
       <button onClick={onClickCart}> Перейти</button>
     </div>
