@@ -36,9 +36,6 @@ function App({ store }) {
     }
   };
 
-
-  const plus = (prev) => {};
-  console.log(cartItems);
   const onClickCart = () => {
     setModal(true);
   };
