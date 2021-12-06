@@ -9,31 +9,21 @@ import Modal from "./components/modal";
  * @param store {Store} Состояние с действиями
  */
 function App({ store }) {
-  // console.log("App");
   const [modal, setModal] = React.useState(false);
-  const [cartItems, setCartItems] = React.useState([]);
 
-  const basket = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-  const result = cartItems.reduce((res, item) => res + item.quantity, 0);
-  const product = cartItems.reduce((prev) => prev + 1, 0);
+  const basket = store.getState().basket;
+
+  const basketCount = basket.length;
+  const basketPrice = basket.reduce((a, c) => a + c.price * c.quantity, 0);
 
   const callbacks = {
     onCreateItem: useCallback(() => store.createItem(), [store]),
     onSelectItem: useCallback((code) => store.selectItem(code), [store]),
     onDeleteItem: useCallback((code) => store.deleteItem(code), [store]),
   };
-  const { items } = store;
-  const onAddCart = (items) => {
-    const exist = cartItems.find((x) => x.code === items.code);
-    if (exist) {
-      setCartItems(
-        cartItems.map((x) =>
-          x.code === items.code ? { ...exist, quantity: exist.quantity + 1 } : x
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...items, quantity: 1 }]);
-    }
+
+  const onAddCart = (item) => {
+    store.basketAddItem(item);
   };
 
   const onClickCart = () => {
@@ -43,8 +33,8 @@ function App({ store }) {
   return (
     <Layout head={<h1>Магазин</h1>}>
       <Controls
-        basket={basket}
-        product={product}
+        basketCount={basketCount}
+        basketPrice={basketPrice}
         onClickCart={onClickCart}
         onCreate={callbacks.onCreateItem}
       />
@@ -56,9 +46,9 @@ function App({ store }) {
       />
       {modal && (
         <Modal
-          items={cartItems}
           basket={basket}
-          result={result}
+          basketCount={basketCount}
+          basketPrice={basketPrice}
           onCloseCart={() => setModal(false)}
         />
       )}

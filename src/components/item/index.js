@@ -35,7 +35,7 @@ function Item({ item, onSelect, onAdd, code, title, price }) {
       </div>
 
       <div className="Item__actions">
-        <div className="price">{item.price + "₽"} </div>
+        <div className="price">{item.price.toLocaleString("en-US") + "₽"} </div>
         <button onClick={addOnClick}>Добавить</button>
       </div>
     </div>

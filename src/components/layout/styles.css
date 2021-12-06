@@ -25,10 +25,10 @@ body {
 
 .drawer {
   position: absolute;
+
   left: 240px;
   top: 211px;
 
-  align-items: center;
   width: 960px;
   height: 603px;
   border-radius: 10px;

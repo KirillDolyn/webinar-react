@@ -14,8 +14,8 @@ class Store {
     this.listners.push(callback);
     // Возвращаем функцию для отписки
     return () => {
-      this.listners = this.listners.filter(item => item !== callback);
-    }
+      this.listners = this.listners.filter((item) => item !== callback);
+    };
   }
 
   /**
@@ -47,12 +47,12 @@ class Store {
    * Создание записи
    */
   createItem() {
-    const code = Math.max(0, ...this.state.items.map(item => item.code)) + 1;
+    const code = Math.max(0, ...this.state.items.map((item) => item.code)) + 1;
     this.setState({
       items: this.state.items.concat({
         code,
-        title: 'Новая запись №'+code
-      })
+        title: "Новая запись №" + code,
+      }),
     });
   }
 
@@ -62,7 +62,7 @@ class Store {
    */
   deleteItem(code) {
     this.setState({
-      items: this.state.items.filter(item => item.code !== code)
+      items: this.state.items.filter((item) => item.code !== code),
     });
   }
 
@@ -72,16 +72,32 @@ class Store {
    */
   selectItem(code) {
     this.setState({
-      items: this.state.items.map(item => {
-        if (item.code === code){
+      items: this.state.items.map((item) => {
+        if (item.code === code) {
           return {
             ...item,
-            selected: !item.selected
+            selected: !item.selected,
           };
         }
         return item;
-      })
+      }),
     });
+  }
+
+  basketAddItem(item) {
+    const updatedState = { ...this.state };
+
+    const existingIdx = updatedState.basket.findIndex(
+      (x) => x.code === item.code
+    );
+
+    if (existingIdx > -1) {
+      updatedState.basket[existingIdx].quantity += 1;
+    } else {
+      updatedState.basket.push(item);
+    }
+
+    this.setState(updatedState);
   }
 }
 

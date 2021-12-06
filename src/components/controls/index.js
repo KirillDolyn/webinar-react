@@ -4,26 +4,32 @@ import plural from "plural-ru";
 
 import "./styles.css";
 
-function Controls({ basket, onClickCart, product }) {
+function Controls({ basketCount, basketPrice, onClickCart }) {
   return (
     <div className="Controls">
       <span>
         В корзине:
-        {product
-          ? `  ${product} ${plural(product, "товар", "товара", "товаров")}`
+        {basketCount
+          ? `  ${basketCount} ${plural(
+              basketCount,
+              "товар",
+              "товара",
+              "товаров"
+            )}`
           : null}{" "}
-        / {basket ? `${basket}` : "пусто"} ₽
+        / {basketPrice ? `${basketPrice}` : "пусто"} ₽
       </span>
       <button onClick={onClickCart}> Перейти</button>
     </div>
   );
 }
+
 Controls.propTypes = {
-  onCreate: propTypes.func.isRequired,
+  onClickCart: propTypes.func.isRequired,
 };
 
 Controls.defaultProps = {
-  onCreate: () => {},
+  onClickCart: () => {},
 };
 
 export default React.memo(Controls);
