@@ -9,19 +9,26 @@
   background: #75aaf1;
 }
 
-.Item__title {
-  width: 100%;
-  padding: 20px 10px;
-}
-.Item__actions {
-  padding: 20px 20px 20px 10px;
-  display: flex;
-}
-
 .Item__number {
   padding: 20px 10px 20px 20px;
 }
-.price {
+
+.Item__title {
+  width: 100%;
+  padding: 20px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Item__right {
+  width: 100%;
+  padding: 20px 20px 20px 10px;
   display: flex;
-  padding-right: 20px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Item__price {
+  padding: 0 10px;
+  white-space: nowrap;
 }

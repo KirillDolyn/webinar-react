@@ -1,13 +1,16 @@
 import React from "react";
+
 import "./styles.css";
 
 function Layout({ head, content, children }) {
-  // console.log("Layout");
   return (
-    <div className="Layout">
-      <div className="Layout__head">{head}</div>
-      <div className="Layout__center">{content || children}</div>
-    </div>
+    <>
+      <div className="Layout">
+        <div className="Layout__head">{head}</div>
+
+        <div className="Layout__center">{content || children}</div>
+      </div>
+    </>
   );
 }
 

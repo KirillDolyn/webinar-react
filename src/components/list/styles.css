@@ -8,3 +8,16 @@
 .List__item:first-child {
   border-top: 1px dashed #ccc;
 }
+.btn {
+  padding: 10px;
+  text-align: right;
+}
+button {
+  cursor: pointer;
+}
+.page {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+  cursor: pointer;
+}

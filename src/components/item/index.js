@@ -1,42 +1,19 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import propTypes from "prop-types";
-import plural from "plural-ru";
 import "./styles.css";
+import numberFormat from "../../utils/number-format";
 
-function Item({ item, onSelect, onAdd, code, title, price }) {
-  const [counter, setCounter] = useState(0);
-  const [added, setAdded] = useState(false);
-
-  const callbacks = {
-    onClick: useCallback(() => {
-      // onSelect(item.code);
-      // if (!item.selected){
-      setCounter(counter + 1);
-      // }
-    }, [item, onSelect, counter, setCounter]),
-  };
-
-  const addOnClick = () => {
-    onAdd({ code, title, price });
-    setAdded(added);
-  };
-
+function Item({ item, onAdd }) {
   return (
-    <div
-      className={"Item" + (item.selected ? " Item_selected" : "")}
-      onClick={callbacks.onClick}
-    >
-      <div className="Item__number">{item.code}</div>
-      <div className="Item__title">
-        {item.title}
-        {counter
-          ? ` | Выделялся ${counter} ${plural(counter, "раз", "раза", "раз")}`
-          : null}
-      </div>
-
-      <div className="Item__actions">
-        <div className="price">{item.price.toLocaleString("en-US") + "₽"} </div>
-        <button onClick={addOnClick}>Добавить</button>
+    <div className="Item">
+      <div className="Item__number">{item._key}</div>
+      <Link to={`/items/${item._id}`}>
+        <div className="Item__title">{item.title}</div>
+      </Link>
+      <div className="Item__right">
+        <div className="Item__price">{numberFormat(item.price)} ₽</div>
+        <button onClick={() => onAdd(item._id)}>Добавить</button>
       </div>
     </div>
   );
@@ -44,13 +21,11 @@ function Item({ item, onSelect, onAdd, code, title, price }) {
 
 Item.propTypes = {
   item: propTypes.object.isRequired,
-  onSelect: propTypes.func.isRequired,
-  onDeleted: propTypes.func.isRequired,
+  onAdd: propTypes.func,
 };
 
 Item.defaultProps = {
-  onSelect: () => {},
-  onDeleted: () => {},
+  onAdd: () => {},
 };
 
 export default React.memo(Item);

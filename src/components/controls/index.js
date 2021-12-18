@@ -1,35 +1,19 @@
 import React from "react";
-import propTypes from "prop-types";
-import plural from "plural-ru";
+import propTypes from 'prop-types';
+import './styles.css';
 
-import "./styles.css";
-
-function Controls({ basketCount, basketPrice, onClickCart }) {
-  return (
-    <div className="Controls">
-      <span>
-        В корзине:
-        {basketCount
-          ? `  ${basketCount} ${plural(
-              basketCount,
-              "товар",
-              "товара",
-              "товаров"
-            )}`
-          : null}{" "}
-        / {basketPrice ? `${basketPrice}` : "пусто"} ₽
-      </span>
-      <button onClick={onClickCart}> Перейти</button>
-    </div>
-  );
+function Controls({onCreate}){
+  return <div className='Controls'>
+    <button onClick={onCreate}> Добавить</button>
+  </div>
 }
 
 Controls.propTypes = {
-  onClickCart: propTypes.func.isRequired,
-};
+  onCreate: propTypes.func.isRequired
+}
 
 Controls.defaultProps = {
-  onClickCart: () => {},
-};
+  onCreate: () => {}
+}
 
 export default React.memo(Controls);
