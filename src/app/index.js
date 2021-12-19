@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/items/:id" element={<ItemInfo />} />
-        <Route path="/iitems" element={<ItemBasket />} />
+        <Route path="/items" element={<ItemBasket />} />
       </Routes>
       {select.name === "basket" && <Basket />}
     </>
