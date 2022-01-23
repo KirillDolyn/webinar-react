@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import Store from "./store";
-import App from "./app";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
+import Store from './store';
+import App from './app';
 import StoreProvider from "./store/provider";
-import * as modules from "./store/exports.js";
+import * as modules from './store/exports.js';
 
 const root = document.getElementById("app");
 
@@ -15,7 +15,7 @@ const store = new Store(modules);
 ReactDOM.render(
   <StoreProvider store={store}>
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </StoreProvider>,
   root

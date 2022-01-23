@@ -1,28 +1,26 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import {Routes, Route} from "react-router-dom";
 import Main from "./main";
 import Basket from "./basket";
 import useSelector from "../utils/use-selector";
-import ItemInfo from "../components/itemInfo";
-import ItemBasket from "../components/item-basket";
+import Article from "./article";
 
 /**
  * Приложение
  */
-
 function App() {
-  const select = useSelector((state) => ({
-    name: state.modals.name,
+
+  const select = useSelector(state => ({
+    name: state.modals.name
   }));
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/items/:id" element={<ItemInfo />} />
-        <Route path="/items" element={<ItemBasket />} />
+        <Route path={''} element={<Main/>}/>
+        <Route path={"/articles/:id"} element={<Article/>}/>
       </Routes>
-      {select.name === "basket" && <Basket />}
+      {select.name === 'basket' && <Basket/>}
     </>
   );
 }
